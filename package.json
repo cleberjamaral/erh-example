@@ -1,0 +1,15 @@
+{
+  "name": "erh-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./backend/server.js",
+    "heroku-postbuild": "cd frontend && yarn && yarn run build"
+  }
+}
