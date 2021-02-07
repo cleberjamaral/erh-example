@@ -1,29 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './App.css'
 
-class App extends Component {
-  state = {
-    text: ''
-  }
-  
-componentDidMount() {
-    this.fetchHello()
-  }
-  
-fetchHello = async () => {
-    const response = await fetch('/api/hello');
-    const helloresponse = await response.json();
-    const text = helloresponse.text;
-    this.setState({ text });
-  }
+import HelloClient from "./components/HelloClient.component";
+import HelloAPI from "./components/HelloAPI.component"
 
-  render() {
+function App() {
+
     return (
       <div className="App">
         <HelloClient />
-        <code>{this.state.text}</code>
+        <HelloAPI />
       </div>
-    )
-  }
+    );
 }
+
 export default App
