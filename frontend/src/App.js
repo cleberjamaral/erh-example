@@ -20,7 +20,7 @@ fetchHello = async () => {
   render() {
     return (
       <div className="App">
-        <h3>Hello from the client!</h3>
+        <HelloClient />
         <code>{this.state.text}</code>
       </div>
     )
