@@ -39,8 +39,7 @@ const app = express()
 /* The api/backend route */
 app.get('/api/hello/', async (req, res, next) => {
   try {
-    const moo = cowsay.say({ text: 'Hello from the API!' })
-    res.json({ moo })
+    res.json({ text: 'Hello from the API!' });
   } catch (err) {
     next(err)
   }
