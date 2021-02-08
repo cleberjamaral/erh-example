@@ -17,9 +17,9 @@ $ yarn init
 ```
 You can just go ahead by pressing ENTER for each question that `yarn init` prompts you. It will end up creating a `package.json` file.
 
-Then, we add a few dependencies to our project: [express](https://www.npmjs.com/package/express), a web application framework for Node.js, and [cors](https://www.npmjs.com/package/cors), a protocol that allows scripts on a browser to interact with resources of other origins. Let us run the following command:
+Then, we add a dependency to our project: [express](https://www.npmjs.com/package/express), a web application framework for Node.js. Let us run the following command:
 ```
-$ yarn add express cors
+$ yarn add express
 ```
 This command adds the referred dependencies to `package.json` and also creates/updates a `yarn.lock` file for maintaining installation consistency.
 
@@ -29,18 +29,17 @@ Let us create a specific folder for the backend, just for our organization.
 $ mkdir backend
 $ cd backend
 ```
-Our backend will have just two routes, one for returning the sentence "Hello from api!" and another for serving the frontend part, which we will discuss later. So, let us create a file called `server.js` and add the following code:
+Our backend will have just two routes, one for returning the sentence "Hello from the API!" and another for serving the frontend part, which we will discuss later. So, let us create a file called `server.js` and add the following code:
 
 ```JavaScript
 const express = require('express')
-const cors = require('cors')
 
 const app = express()
 
 /* The api/backend route */
-app.get('/api/hello/', cors(), async (req, res, next) => {
+app.get('/api/hello/', async (req, res, next) => {
   try {
-    const moo = cowsay.say({ text: 'Hello from api!' })
+    const moo = cowsay.say({ text: 'Hello from the API!' })
     res.json({ moo })
   } catch (err) {
     next(err)
@@ -65,7 +64,7 @@ Let us check if it is working. Back in the project's root folder, we need to edi
 "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./backend/server.js",
-    "heroku-postbuild": "cd frontend && yarn && yarn run build"
+    "heroku-postbuild": "cd frontend && yarn && yarn build"
   }
 ```
 In the project's root folder, let us launch our server.
@@ -76,7 +75,7 @@ As a result, we should see on the console the following output:
 
 > Server is running on port 5000 
 
-Browsing [http://localhost:5000/api/hello](http://localhost:5000/api/hello) should show a json object in which the content is `{"text":"Hello from api!"}`. Notice that it is returned directly by the API.
+Browsing [http://localhost:5000/api/hello](http://localhost:5000/api/hello) should show a json object in which the content is `{"text":"Hello from API!"}`. Notice that it is returned directly by the API.
 
 ### Creating the frontend
 So, let us create our frontend app. In this tutorial we are not going to make an appealing user interface; instead, we are focusing on making it very simple.
@@ -93,13 +92,13 @@ This command creates the folder `frontend` containing other subfolders, speciall
 ```
 Now, in the frontend folder, we can launch our React app in a development environment using the following command: 
 ```
-$ yarn run start
+$ yarn start
 ```
 By default, the browser will open a default React app. If everything is fine, we should see the a moving React logo. You can also manually browse the address [http://localhost:3000/](http://localhost:3000/). We can shutdown this development environment using the Ctrl+C command.
 
 Let us check if the proxy is working. Still in the frontend folder, let us execute the build:
 ```
-$ yarn run build
+$ yarn build
 ```
 Assuming the server is still running, we can browse the root address [http://localhost:5000/](http://localhost:5000/) and check if our React app is now available. Notice that by default, the development environment runs at port 3000; now, we are running our frontend on the same port (5000) to which we set our backend. If our React app is running on 5000, it seems the proxy configuration is working properly.
 
@@ -137,11 +136,11 @@ fetchHello = async () => {
 export default App
 ```
 
-In this code snippet we are just printing "Hello from the client", which is a content provided by the frontend part and "Hello from the api" which is provided by the API (from the JSON we can access at [http://localhost:5000/api/hello](http://localhost:5000/api/hello)).
+In this code snippet we are just printing "Hello from the client", which is a content provided by the frontend part and "Hello from the API" which is provided by the API (from the JSON we can access at [http://localhost:5000/api/hello](http://localhost:5000/api/hello)).
 
 To check if it is working, after editing `src/App.js`, we can just build our frontend again and open our browser on [http://localhost:5000/](http://localhost:5000/).
 ```
-$ yarn run build
+$ yarn build
 ```
 We should see our very primitive interface printing our greetings from both backend and frontend parts.
 
