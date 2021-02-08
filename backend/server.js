@@ -1,12 +1,11 @@
 const express = require('express')
-const cors = require('cors')
 
 const app = express()
 
 /* The api/backend route */
-app.get('/api/hello/', cors(), async (req, res, next) => {
+app.get('/api/hello/', async (req, res, next) => {
   try {
-    res.json({ text: 'Hello from the api!' })
+    res.json({ text: 'Hello from the API!' })
   } catch (err) {
     next(err)
   }
